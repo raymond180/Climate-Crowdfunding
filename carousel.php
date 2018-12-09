@@ -7,31 +7,31 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="text-center">
-                            <img class="img-fluid" src="./images/five-cups.jpg" alt="Drinks">
+                            <img class="img-fluid" src="./images/wind-power.jpeg" alt="Wind Power">
                         </div>
                         <div class="container">
                             <div class="carousel-caption text-left">
-                                <p><a class="btn btn-md btn-dark" href="./customer-order.php" role="button">Order online</a></p>
+                                <p><a class="btn btn-md btn-dark" href="./wind-energy.php" role="button">Learn more</a></p>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="text-center">
-                            <img class="img-fluid" src="./images/fried-chicken-and-buble.jpg" alt="Food">
+                            <img class="img-fluid" src="./images/solar-panel.jpeg" alt="Solar Panel">
                         </div>
                         <div class="container">
                             <div class="carousel-caption text-left">
-                                <p><a class="btn btn-md btn-dark " href="./menu.php" role="button">Browse menu</a></p>
+                                <p><a class="btn btn-md btn-dark " href="./solar-energy.php" role="button">Learn more</a></p>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="text-center">
-                            <img class="img-fluid" src="./images/six-cups.jpg" alt="Store">
+                            <img class="img-fluid" src="./images/investment.jpeg" alt="Investment">
                         </div>
                         <div class="container">
                             <div class="carousel-caption text-left">
-                                <p><a class="btn btn-md btn-dark" href="./index.php#story" role="button">About us</a></p>
+                                <p><a class="btn btn-md btn-dark" href="./investment.php" role="button">Invest now!</a></p>
                             </div>
                         </div>
                     </div>

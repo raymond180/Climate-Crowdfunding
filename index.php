@@ -46,11 +46,11 @@
 
                 <div class="row featurette" id="story">
                     <div class="col-md-7">
-                        <h2 class="featurette-heading">The Ten Asian Story. <span class="text-muted"> Here to Satisfy.</span></h2>
-                        <p class="lead"> Recognizing the high demand for international cuisines, Ten Asian Food Hall seeks to satisfy customers by offering a wide range of Chinese, Hawaiian, and Korean dishes and beverages.</p>
+                        <h2 class="featurette-heading">Climate Crowdfunding. <span class="text-muted"> Here to Save the Earth.</span></h2>
+                        <p class="lead"> Recognizing the urgency to combat climate change, Climate Crowdfunding seeks to reduce carbon emission to prevent catastrophic climate change.</p>
                     </div>
                     <div class="col-md-5">
-                        <img class="featurette-image img-fluid mx-auto" src="./images/sugar-buble.jpg" alt="Generic placeholder image">
+                        <img class="featurette-image img-fluid mx-auto" src="./images/investment.jpeg" alt="Investment image">
                     </div>
                 </div>
 
@@ -58,11 +58,11 @@
 
                 <div class="row featurette" id="why">
                     <div class="col-md-7 order-md-2">
-                        <h2 class="featurette-heading">Why Ten Asian? <span class="text-muted">See for yourself.</span></h2>
-                        <p class="lead">At Ten Asian Food Hall, you will experience something new. We welcome you to try out our new bubble tea specialties with topping and flavors like never before. </p>
+                        <h2 class="featurette-heading">Why? <span class="text-muted">Invest Your Future.</span></h2>
+                        <p class="lead">With Climate Crowdfunding, you will. </p>
                     </div>
                     <div class="col-md-5 order-md-1">
-                        <img class="featurette-image img-fluid mx-auto" src="./images/eight-cups.jpg" alt="Generic placeholder image">
+                        <img class="featurette-image img-fluid mx-auto" src="./images/investment.jpeg" alt="Investment image">
                     </div>
                 </div>
 
@@ -70,11 +70,11 @@
 
                 <div class="row featurette">
                     <div class="col-md-7">
-                        <h2 class="featurette-heading">Order Now. <span class="text-muted">It's Easy</span></h2>
-                        <p class="lead">Don't miss out on any of our tantalizing offerings. You can place your order online and pick it up at the store. It's Fast, Easy and Convenient. </p>
+                        <h2 class="featurette-heading">Join Us Now. <span class="text-muted">It's Easy</span></h2>
+                        <p class="lead">Don't miss out this great oppertunity. You can earn money and save the Earth now. Investment in Renewable and earn Sustainable dividends. </p>
                     </div>
                     <div class="col-md-5">
-                        <img class="featurette-image img-fluid mx-auto" src="./images/salad.jpg" alt="Generic placeholder image">
+                        <img class="featurette-image img-fluid mx-auto" src="./images/investment.jpeg" alt="Generic placeholder image">
                     </div>
                 </div>
 
