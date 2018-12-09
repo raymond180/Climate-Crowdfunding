@@ -24,7 +24,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./investment.php">Investment</a>
+                            <a class="nav-link" href="./project.php">Project</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./location.php">Locations</a>

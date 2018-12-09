@@ -19,9 +19,9 @@
                     </ul>
                 </div>
                 <div class="col-6 col-md">
-                    <h5>Investment</h5>
+                    <h5>Project</h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="./investment.php">Investment</a></li>
+                        <li><a class="text-muted" href="./project.php">Project</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md">

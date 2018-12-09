@@ -18,12 +18,13 @@
             <!-- Container Start -->
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 pt-4 text-center">
+                    <div class="col-md-12 pt-5 text-center">
                         <h2>Solar Energy</h2>
                     </div><!-- /.col -->
                     <div class="col-md-12">
                         <p>Solar energy is the energy directly harness from sun.</p>
-                        <img class="img-fluid" scr="./images/solar-irradiance.jpg" alt="solar irradiance">
+                        <img class="img-fluid" src="./images/solar-irradiance.jpg" alt="solar irradiance">
+                        <p class="text-right">Image from <a href="https://www.nrel.gov/gis/solar.html" target="_blank">The National Renewable Energy Laboratory</a></p>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
                 <hr class="featurette-divider">
