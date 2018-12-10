@@ -27,7 +27,9 @@
                 <div class="col-6 col-md">
                     <h5>Community</h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#"></a></li>
+                        <li><a class="text-muted" href="register.php">Register</a></li>
+                        <li><a class="text-muted" href="sign-in.php">Sign-in</a></li>
+                        <li><a class="text-muted" href="community.php">Community</a></li>
                     </ul>
                 </div>
             </div>

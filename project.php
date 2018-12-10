@@ -67,7 +67,7 @@ else {
             <!-- Container Start -->
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 pt- text-center">
+                    <div class="col-md-12 pt-5 text-center">
                         <h2>Project</h2>
                     </div><!-- /.col -->
                     <form method="GET" action="view-project.php">
