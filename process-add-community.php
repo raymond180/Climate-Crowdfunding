@@ -1,54 +1,39 @@
 <?php
 include_once('./connect_database.php');
-$name_of_table = "projects";
-$body = "";
-// Check if the table exists in the db.
-if (tableExists($db, $name_of_table)) { 
-	// Prepare a SQL query
-	$sqlQuery ="select * from $name_of_table";
-	$statement1= $db->prepare($sqlQuery);
+$name_of_table = "Community";
 
+$communityName = $_GET["communityName"];
+$communityDesciption = $_GET["communityDesciption"];
+
+// Check if the table exists in the db.
+if (tableExists($db, $name_of_table)) {
+
+	// Prepare a SQL query and bind all 6 variables. 
+	$sqlQuery = "INSERT INTO $name_of_table (communityName, communityDesciption) VALUES (:communityName, :communityDesciption)";
+	$statement1 = $db->prepare($sqlQuery);
+	$statement1->bindValue(':communityName', $communityName, PDO::PARAM_STR);
+	$statement1->bindValue(':communityDesciption', $communityDesciption, PDO::PARAM_STR);
+	
 	// Execute the SQL query using $statement1->execute(); and assign the value
 	// that is returned  to $result.
 	$result = $statement1->execute();
-	if (!$result) {
+
+	if(!$result) {
 		// Query fails.
-		$body = "Retrieving records failed." .$db->errorInfo();
-    } 
-    else {
+		$body = "Inserting entry for $communityName failed.".$db->errorInfo() ;
+	} else {
 		// Query is successful.
-		// Convert sqlQuery result to an array and store it in $numberOfRows using $sqlQuery->fetchAll(PDO::FETCH_ASSOC);
-		$numberOfRows = $statement1->fetchAll(PDO::FETCH_ASSOC);
-		if($numberOfRows) {
-			foreach($numberOfRows as $resultRow) {
-                $body .= "<div class='col-md-4'>";
-                $body .= "    <div class='card' style='width: 18rem;'>";
-                $body .= "        <img class='card-img-top' src='{$resultRow['projectImage']}' alt='project image'>";
-                $body .= "        <div class='card-body'>";
-                $body .= "            <h5 class='card-title'>{$resultRow['projectName']}</h5>";
-                $body .= "            <p class='card-text'>{$resultRow['projectSummery']}</p>";
-                $body .= "            <form method='GET' action='view-project.php'>";
-                $body .= "              <button type='submit' name='projectID' value='{$resultRow['projectID']}' class='btn btn-primary'>View Details</button>";
-                $body .= "            </form>";
-                $body .= "        </div> <!-- /.card-body -->";
-                $body .= "    </div><!-- /.card -->";
-                $body .= "</div><!-- /.col -->";
-            }
-        } 
-        else{
-			// Invalid table name and nothing is returned from the SQL query
-			$body = "No project exist";
-		}
+		$body = "{$communityName} has been successfully created. Go <a href='./community.php'>here</a> and find your community!";
 	}
+	
 	// Closing query connection
-	$statement1->closeCursor();	
-} 
-else {
-	// Table does not exist in db.
-	$body = "No project exist";
+		$statement1->closeCursor();	
+	
+} else {
+// Table does not exist in db.
+	$body = "Table $name_of_table does not exist in database";
 }
 ?>
-
 <!doctype html>
 <html lang="en">
 	<head>
@@ -70,15 +55,15 @@ else {
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 pt-5 text-center">
-                        <h2>Project</h2>
-                        <div class="float-right"><a role="button" class="btn btn-info" href="add-project.php">Add Project</a></div>
+                        <h2>Add Community Process</h2>
+                    </div><!-- /.col -->
+                    <div class="col-md-12">
+                        <p>
+                        <?php echo $body; ?>
+                        </p>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
-                <div class="row">
-                    <?php echo $body; ?>
-                </div><!-- /.row -->
             </div><!-- /. container -->
-            
         </main>
         <!-- Main Content End -->
         

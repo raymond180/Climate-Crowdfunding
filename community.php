@@ -1,9 +1,9 @@
 <?php
 include_once('./connect_database.php');
-$name_of_table = "projects";
+$name_of_table = "Community";
 $body = "";
 // Check if the table exists in the db.
-if (tableExists($db, $name_of_table)) { 
+if (tableExists($db, $name_of_table)) {
 	// Prepare a SQL query
 	$sqlQuery ="select * from $name_of_table";
 	$statement1= $db->prepare($sqlQuery);
@@ -23,21 +23,20 @@ if (tableExists($db, $name_of_table)) {
 			foreach($numberOfRows as $resultRow) {
                 $body .= "<div class='col-md-4'>";
                 $body .= "    <div class='card' style='width: 18rem;'>";
-                $body .= "        <img class='card-img-top' src='{$resultRow['projectImage']}' alt='project image'>";
                 $body .= "        <div class='card-body'>";
-                $body .= "            <h5 class='card-title'>{$resultRow['projectName']}</h5>";
-                $body .= "            <p class='card-text'>{$resultRow['projectSummery']}</p>";
+                $body .= "            <h5 class='card-title'>{$resultRow['communityName']}</h5>";
+                $body .= "            <p class='card-text'>{$resultRow['communityDesciption']}</p>";
                 $body .= "            <form method='GET' action='view-project.php'>";
-                $body .= "              <button type='submit' name='projectID' value='{$resultRow['projectID']}' class='btn btn-primary'>View Details</button>";
+                $body .= "              <button type='submit' name='CID' value='{$resultRow['CID']}' class='btn btn-primary'>View Community</button>";
                 $body .= "            </form>";
                 $body .= "        </div> <!-- /.card-body -->";
                 $body .= "    </div><!-- /.card -->";
                 $body .= "</div><!-- /.col -->";
             }
-        } 
+        }
         else{
 			// Invalid table name and nothing is returned from the SQL query
-			$body = "No project exist";
+			$body = "No community exists yet";
 		}
 	}
 	// Closing query connection
@@ -70,8 +69,8 @@ else {
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 pt-5 text-center">
-                        <h2>Project</h2>
-                        <div class="float-right"><a role="button" class="btn btn-info" href="add-project.php">Add Project</a></div>
+                        <h2>Community</h2>
+                        <div class="float-right"><a role="button" class="btn btn-info" href="add-community.php">Add Community</a></div>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
                 <div class="row">

@@ -27,7 +27,7 @@
                             <a class="nav-link" href="./project.php">Project</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./location.php">Locations</a>
+                            <a class="nav-link" href="./community.php">Community</a>
                         </li>
                     </ul>
 <?php 

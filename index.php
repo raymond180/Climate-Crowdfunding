@@ -77,9 +77,6 @@
                         <img class="featurette-image img-fluid mx-auto" src="./images/investment.jpeg" alt="Generic placeholder image">
                     </div>
                 </div>
-
-                <hr class="featurette-divider">
-
                 <!-- /END THE FEATURETTES -->
             </div> <!-- /. container -->
         </main>
