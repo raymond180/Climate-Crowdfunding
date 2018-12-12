@@ -2,10 +2,11 @@
 include_once('./connect_database.php');
 $name_of_table = "Community";
 $body = "";
+$CID = $_GET['CID'];
 // Check if the table exists in the db.
-if (tableExists($db, $name_of_table)) {
+if (tableExists($db, $name_of_table)) { 
 	// Prepare a SQL query
-	$sqlQuery ="SELECT * FROM $name_of_table";
+	$sqlQuery ="SELECT * FROM $name_of_table WHERE CID = '{$CID}'";
 	$statement1= $db->prepare($sqlQuery);
 
 	// Execute the SQL query using $statement1->execute(); and assign the value
@@ -21,22 +22,20 @@ if (tableExists($db, $name_of_table)) {
 		$numberOfRows = $statement1->fetchAll(PDO::FETCH_ASSOC);
 		if($numberOfRows) {
 			foreach($numberOfRows as $resultRow) {
-                $body .= "<div class='col-md-4'>";
-                $body .= "    <div class='card' style='width: 18rem;'>";
-                $body .= "        <div class='card-body'>";
-                $body .= "            <h5 class='card-title'>{$resultRow['communityName']}</h5>";
-                $body .= "            <p class='card-text'>{$resultRow['communityDesciption']}</p>";
-                $body .= "            <form method='GET' action='view-community.php'>";
-                $body .= "              <button type='submit' name='CID' value='{$resultRow['CID']}' class='btn btn-primary'>View Community</button>";
-                $body .= "            </form>";
-                $body .= "        </div> <!-- /.card-body -->";
-                $body .= "    </div><!-- /.card -->";
+                $body .= "<div class='col-md-12 pt-5 text-center'>";
+                $body .= "  <h2>{$resultRow['communityName']}</h2>";
+                $body .= "  <p>{$resultRow['communityDesciption']}</p>";
+                $body .= "</div><!-- /.col -->";
+                $body .= "<div class='col-md-12 pt-1'>";
+                $body .= "  <form action='add-post.php' method='GET'>";
+                $body .= "      <button class='btn btn-primary float-right' type='submit' name='submit' value='{$CID}'>Add Post</button>";
+                $body .= "  </form>";
                 $body .= "</div><!-- /.col -->";
             }
-        }
+        } 
         else{
 			// Invalid table name and nothing is returned from the SQL query
-			$body = "No community exists yet";
+			$body = "<p>No such community exist</p>";
 		}
 	}
 	// Closing query connection
@@ -44,7 +43,7 @@ if (tableExists($db, $name_of_table)) {
 } 
 else {
 	// Table does not exist in db.
-	$body = "No project exist";
+	$body = "<p>No such community exist</p>";
 }
 ?>
 
@@ -68,16 +67,9 @@ else {
             <!-- Container Start -->
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 pt-5 text-center">
-                        <h2>Community</h2>
-                        <div class="float-right"><a role="button" class="btn btn-info" href="add-community.php">Add Community</a></div>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-                <div class="row">
                     <?php echo $body; ?>
                 </div><!-- /.row -->
             </div><!-- /. container -->
-            
         </main>
         <!-- Main Content End -->
         

@@ -6,7 +6,7 @@ $projectID = $_GET['projectID'];
 // Check if the table exists in the db.
 if (tableExists($db, $name_of_table)) { 
 	// Prepare a SQL query
-	$sqlQuery ="select * from $name_of_table WHERE projectID = {$projectID}";
+	$sqlQuery ="SELECT * FROM $name_of_table WHERE projectID = {$projectID}";
 	$statement1= $db->prepare($sqlQuery);
 
 	// Execute the SQL query using $statement1->execute(); and assign the value
@@ -70,7 +70,6 @@ else {
                 <div class="row">
                     <?php echo $body; ?>
                 </div><!-- /.row -->
-                <hr class="featurette-divider">
             </div><!-- /. container -->
         </main>
         <!-- Main Content End -->
