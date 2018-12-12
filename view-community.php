@@ -1,13 +1,13 @@
 <?php
 include_once('./connect_database.php');
-$name_of_table = "Community";
+$name_of_table1 = "Community";
 $body = "";
 $CID = $_GET['CID'];
 // Check if the table exists in the db.
-if (tableExists($db, $name_of_table)) { 
+if (tableExists($db, $name_of_table1)) { 
 	// Prepare a SQL query
-	$sqlQuery ="SELECT * FROM $name_of_table WHERE CID = '{$CID}'";
-	$statement1= $db->prepare($sqlQuery);
+	$sqlQuery1 ="SELECT * FROM $name_of_table1 WHERE CID = '{$CID}'";
+	$statement1= $db->prepare($sqlQuery1);
 
 	// Execute the SQL query using $statement1->execute(); and assign the value
 	// that is returned  to $result.
@@ -19,18 +19,64 @@ if (tableExists($db, $name_of_table)) {
     else {
 		// Query is successful.
 		// Convert sqlQuery result to an array and store it in $numberOfRows using $sqlQuery->fetchAll(PDO::FETCH_ASSOC);
-		$numberOfRows = $statement1->fetchAll(PDO::FETCH_ASSOC);
-		if($numberOfRows) {
-			foreach($numberOfRows as $resultRow) {
-                $body .= "<div class='col-md-12 pt-5 text-center'>";
-                $body .= "  <h2>{$resultRow['communityName']}</h2>";
-                $body .= "  <p>{$resultRow['communityDesciption']}</p>";
-                $body .= "</div><!-- /.col -->";
-                $body .= "<div class='col-md-12 pt-1'>";
-                $body .= "  <form action='add-post.php' method='GET'>";
-                $body .= "      <button class='btn btn-primary float-right' type='submit' name='submit' value='{$CID}'>Add Post</button>";
-                $body .= "  </form>";
-                $body .= "</div><!-- /.col -->";
+		$resultRow = $statement1->fetch(PDO::FETCH_ASSOC);
+		if($resultRow) {
+            // display community info
+            $body .= "<div class='col-md-12 pt-5 text-center'>";
+            $body .= "  <h2>{$resultRow['communityName']}</h2>";
+            $body .= "  <p>{$resultRow['communityDesciption']}</p>";
+            $body .= "</div><!-- /.col -->";
+            // display add post button
+            $body .= "<div class='col-md-12 pt-1'>";
+            $body .= "  <form action='add-post.php' method='GET'>";
+            $body .= "      <button class='btn btn-primary float-right' type='submit' name='submit' value='{$CID}'>Add Post</button>";
+            $body .= "  </form>";
+            $body .= "</div><!-- /.col -->";
+            // query post that are posted in the community
+            $name_of_table2 = "CommunityPosts";
+            if (tableExists($db, $name_of_table2)) { 
+                $sqlQuery = "SELECT * FROM $name_of_table2 WHERE CID = '{$CID}'";
+                $statement2= $db->prepare($sqlQuery);
+                $posts = $statement2->execute();
+                if (!$posts){
+                    $body .= "No post exists yet." .$db->errorInfo();
+                }
+                else{
+                    $postRows = $statement2->fetchAll(PDO::FETCH_ASSOC);
+                    // if got at lease one post
+                    if($postRows){
+                        $body .= "<div class='col-md-12 pt-2'>";
+                        $body .= "<table class='table table-striped'>";
+                        $body .= "<thead>";
+                        $body .= "    <tr>";
+                        $body .= "        <th scope='col'>#</th>";
+                        $body .= "        <th scope='col'>Title</th>";
+                        $body .= "        <th scope='col'>content</th>";
+                        $body .= "    </tr>";
+                        $body .= "</thead>";
+                        $body .= "<tbody>";
+                        foreach($postRows as $post){
+                            $body .= "    <tr>";
+                            $body .= "        <th scope='row'>{$post['postID']}</th>";
+                            $body .= "        <td>{$post['title']}</td>";
+                            $body .= "        <td>{$post['content']}</td>";
+                            $body .= "    </tr>";
+                        }
+                        $body .= "</tbody>";
+                        $body .= "</table>";
+                        $body .= "</div><!-- /.col -->";
+                    }
+                    // if no post exists
+                    else{
+                        $body .= "<div class='col-md-12 pt-5 text-center'>";
+                        $body .= "<p>No post exists in this community yet</p>";
+                        $body .= "</div><!-- /.col -->";
+                    }
+                }
+            }
+            else {
+                // Table does not exist in db.
+                $body .= "<p>No post exist</p>";
             }
         } 
         else{
