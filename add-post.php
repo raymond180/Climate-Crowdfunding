@@ -1,3 +1,11 @@
+<?php
+    if(isset($_GET['submit'])){
+        $CID = $_GET['submit'];
+    }
+    else{
+        header('Location:./community.php');
+    }
+?>
 <!doctype html>
 <html lang="en">
 	<head>
@@ -20,19 +28,23 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 pt-5 text-center">
-                        <h2>Add Community</h2>
+                        <h2>Add Post</h2>
                     </div><!-- /.col -->
                     <div class="col-md-12">
-                        <form method="GET" action="process-add-community.php">
+                        <form method="GET" action="process-add-post.php">
                             <div class="form-group">
-                                <label for="communityName">Community Name</label>
-                                <input type="text" class="form-control" id="communityName" placeholder="Community Name" name="communityName">
+                                <label for="CID">Community ID</label>
+                                <input type="text" class="form-control" id="CID" name="CID" value='<?php echo $CID; ?>' disabled>
                             </div>
                             <div class="form-group">
-                                <label for="communityDesciption">Community Description</label>
-                                <textarea class="form-control" id="communityDesciption" rows="3" name="communityDesciption"></textarea>
+                                <label for="title">Post Title</label>
+                                <input type="text" class="form-control" id="title" placeholder="Title" name="title">
                             </div>
-                            <button class="btn btn-primary float-right" type='submit' name='submit'> Create Community </button>
+                            <div class="form-group">
+                                <label for="content">Content</label>
+                                <textarea class="form-control" id="content" rows="6" name="content"></textarea>
+                            </div>
+                            <button class="btn btn-primary float-right" type='submit' name='submit'> Create Post </button>
                         </form>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
