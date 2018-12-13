@@ -1,47 +1,3 @@
-<?php
-include_once('./connect_database.php');
-$name_of_table1 = "`users`";
-$name_of_table2 = "`CommunityPosts`";
-$body = "";
-$postID = $_GET['postID'];
-// Check if the table exists in the db.
-if (tableExists($db, $name_of_table1)) { 
-	// Prepare a SQL query
-	$sqlQuery1 ="SELECT a.name , b.postID , b.title , b.content  FROM $name_of_table1 as a , $name_of_table2 as b WHERE a.userID=b.userID ";
-	$statement1= $db->prepare($sqlQuery1);
-
-	// Execute the SQL query using $statement1->execute(); and assign the value
-	// that is returned  to $result.
-	$result = $statement1->execute();
-	if (!$result) {
-		// Query fails.
-		$body = "Retrieving records failed.";
-    } 
-    else {
-		// Query is successful.
-		// Convert sqlQuery result to an array and store it in $numberOfRows using $sqlQuery->fetchAll(PDO::FETCH_ASSOC);
-		$resultRow = $statement1->fetch(PDO::FETCH_ASSOC);
-		if($resultRow) {
-            // display community info
-            $body .= "<div class='col-md-12 pt-5 text-center'>";
-            $body .= "  <h2>{$resultRow['title']}</h2>";
-            $body .= "  <p>{$resultRow['content']}</p>";
-            $body .= "</div><!-- /.col -->";
-        } 
-        else{
-			// Invalid table name and nothing is returned from the SQL query
-			$body = "<p>No such community exist</p>";
-		}
-	}
-	// Closing query connection
-	$statement1->closeCursor();	
-} 
-else {
-	// Table does not exist in db.
-	$body = "<p>No such community exist</p>";
-}
-?>
-
 <!doctype html>
 <html lang="en">
 	<head>
@@ -62,7 +18,23 @@ else {
             <!-- Container Start -->
             <div class="container">
                 <div class="row">
-                    <?php echo $body; ?>
+                    <div class="col-md-12 pt-5 text-center">
+                        <h2>Wind Energy</h2>
+                    </div><!-- /.col -->
+                    <div class="col-md-12 pt-2">
+                        <p>
+                        Wind energy is the energy indirectly harness from sun because wind is casued by differece of air on land. It is
+                        currently viewed as the most promising reneable energy source. It has the advantage of steady energy output comparing
+                        to solar power. Not every place is good for placing wind turbine. The power output of wind turbine is cubic to wind spped.
+                        So if the wind speed is twice at a place, the power output will be 8x.
+                        </p>
+                        <p>
+                        Let's crwodfund wind farm in place where effiency is high, and enjoy the return you will get. 
+                        Let's fight climate change for good.
+                        </p>
+                        <img class="img-fluid" src="./images/wind-speed.jpg" alt="wind speed map">
+                        <p class="text-right">Image from <a href="https://www.nrel.gov/gis/wind.html" target="_blank">The National Renewable Energy Laboratory</a></p>
+                    </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /. container -->
         </main>

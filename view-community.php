@@ -33,10 +33,12 @@ if (tableExists($db, $name_of_table1)) {
             $body .= "  </form>";
             $body .= "</div><!-- /.col -->";
             // query post that are posted in the community
-            $name_of_table2 = "CommunityPosts";
+            $name_of_table1 = "`users`";
+            $name_of_table2 = "`CommunityPosts`";
             if (tableExists($db, $name_of_table2)) { 
                 $sqlQuery = "SELECT * FROM $name_of_table2 WHERE CID = '{$CID}'";
-                $statement2= $db->prepare($sqlQuery);
+                $sqlQuery1 ="SELECT a.name , b.postID , b.title , b.content , b.userID, b.CID  FROM `users` as a , `CommunityPosts` as b WHERE a.userID=b.userID AND b.CID = '{$CID}'";
+                $statement2= $db->prepare($sqlQuery1);
                 $posts = $statement2->execute();
                 if (!$posts){
                     $body .= "No post exists yet." .$db->errorInfo();
@@ -50,6 +52,7 @@ if (tableExists($db, $name_of_table1)) {
                         $body .= "<thead>";
                         $body .= "    <tr>";
                         $body .= "        <th scope='col'>#</th>";
+                        $body .= "        <th scope='col'>user</th>";
                         $body .= "        <th scope='col'>Title</th>";
                         $body .= "        <th scope='col'>content</th>";
                         $body .= "    </tr>";
@@ -58,6 +61,7 @@ if (tableExists($db, $name_of_table1)) {
                         foreach($postRows as $post){
                             $body .= "    <tr>";
                             $body .= "        <th scope='row'>{$post['postID']}</th>";
+                            $body .= "        <td>{$post['name']}</td>";
                             $body .= "        <td><a href='./view-post.php?postID={$post['postID']}'>{$post['title']}</td>";
                             $content = $post['content'];
                             $content = substr($content,0,50) . "......";

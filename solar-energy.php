@@ -21,8 +21,16 @@
                     <div class="col-md-12 pt-5 text-center">
                         <h2>Solar Energy</h2>
                     </div><!-- /.col -->
-                    <div class="col-md-12">
-                        <p>Solar energy is the energy directly harness from sun.</p>
+                    <div class="col-md-12 pt-2">
+                        <p>
+                        Solar energy is the energy directly harness from sun. However, not every piece of land receives the same level of sun power.
+                        The solar effiency is measured by solar irradiance which is depicted in the graph below. The higher the solar irradience,
+                        the higher power and energy yeild you will get from your solar panel. 
+                        </p>
+                        <p>
+                        Let's crwodfund panel arrays in place where effiency
+                        is high, and enjoy the return you will get. Let's fight climate change for good.
+                        </p>
                         <img class="img-fluid" src="./images/solar-irradiance.jpg" alt="solar irradiance">
                         <p class="text-right">Image from <a href="https://www.nrel.gov/gis/solar.html" target="_blank">The National Renewable Energy Laboratory</a></p>
                     </div><!-- /.col -->
