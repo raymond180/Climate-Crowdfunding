@@ -1,12 +1,13 @@
 <?php
 include_once('./connect_database.php');
-$name_of_table1 = "Community";
+$name_of_table1 = "`users`";
+$name_of_table2 = "`CommunityPosts`";
 $body = "";
-$CID = $_GET['CID'];
+$postID = $_GET['postID'];
 // Check if the table exists in the db.
 if (tableExists($db, $name_of_table1)) { 
 	// Prepare a SQL query
-	$sqlQuery1 ="SELECT * FROM $name_of_table1 WHERE CID = '{$CID}'";
+	$sqlQuery1 ="SELECT a.name , b.postID , b.title , b.content  FROM $name_of_table1 as a $name_of_table1 as b WHERE a.userID=b.userID ";
 	$statement1= $db->prepare($sqlQuery1);
 
 	// Execute the SQL query using $statement1->execute(); and assign the value
@@ -14,7 +15,7 @@ if (tableExists($db, $name_of_table1)) {
 	$result = $statement1->execute();
 	if (!$result) {
 		// Query fails.
-		$body = "Retrieving records failed." .$db->errorInfo();
+		$body = "Retrieving records failed.";
     } 
     else {
 		// Query is successful.
@@ -23,8 +24,7 @@ if (tableExists($db, $name_of_table1)) {
 		if($resultRow) {
             // display community info
             $body .= "<div class='col-md-12 pt-5 text-center'>";
-            $body .= "  <h2>{$resultRow['communityName']}</h2>";
-            $body .= "  <p>{$resultRow['communityDesciption']}</p>";
+            $body .= "  <h2>{$resultRow['title']}</h2>";
             $body .= "</div><!-- /.col -->";
             // display add post button
             $body .= "<div class='col-md-12 pt-1'>";

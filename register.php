@@ -1,26 +1,46 @@
 <?php 
 include_once("./connect_database.php");
 
-if(isset($_SESSION['customerEmail'])){
+if(isset($_SESSION['email'])){
   header('Location: ./index.php');
 }
 
 if (isset($_POST['submit'])) {
-      
-      // Retrieves the information entered in the form
-      $customerName = $_POST['customerName'];
-      $customerTelephone = $_POST['customerTelephone'];
-      $customerEmail = $_POST['customerEmail'];
-      $customerPassword = $_POST['customerPassword'];
+  // Retrieves the information entered in the form
+  $userName = $_POST['userName'];
+  $userEmail = $_POST['userEmail'];
+  $userPassword = $_POST['userPassword'];
 
-      // Writes the SQL query
-      $query = "INSERT INTO Customers (customerName, customerTelephone, customerEmail, customerPassword) VALUES ('{$customerName}','{$customerTelephone}','{$customerEmail}','{$customerPassword}');";
-      
-      // Uses the proper function from the helper codes to run the query
-      runQuery($query);
+  $name_of_table = "users";
+  if (tableExists($db, $name_of_table)){
+    // Prepare a SQL query
+    $sqlQuery ="INSERT INTO $name_of_table (name, email, password) VALUES (:name, :email, :password)";
 
-      header('Location: ./index.php');
+    $statement1 = $db->prepare($sqlQuery);
+    $statement1->bindValue(':name', $userName, PDO::PARAM_STR);
+    $statement1->bindValue(':email', $userEmail, PDO::PARAM_STR);
+    $statement1->bindValue(':password', $userPassword, PDO::PARAM_STR);
+
+    // Execute the SQL query using $statement1->execute(); and assign the value
+    // that is returned  to $result.
+    $result = $statement1->execute();
+    if(!$result) {
+      // Query fails.
+      // $body = "Inserting entry for {$name_of_table} failed.".$db->errorInfo() ;
     }
+    else {
+      // Query is successful.
+      // $body = "{$communityName} has been successfully created.";
+      header("Location: ./index.php");
+    }
+  // Closing query connection
+  $statement1->closeCursor();
+  }
+  else {
+    // Table does not exist in db.
+    $body = "No such table exist in DB";
+  }
+}
 ?>
 
 <!doctype html>
@@ -46,17 +66,13 @@ if (isset($_POST['submit'])) {
           <img class="img-fluid" src="./images/logo.jpg">
           <h1 class="h3 mb-3 font-weight-normal">Create account</h1>
           <label for="inputEmail" class="sr-only">Email address</label>
-          <input type="email" name="customerEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-          <label for="inputPhoneNumber" class="sr-only">Phone Number</label>
-          <input type="phoneNumber" name="customerTelephone" id="inputPhoneNumber" class="form-control" placeholder="Phone Number" required autofocus>
+          <input type="email" name="userEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
           <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" name="customerPassword" id="inputPassword" class="form-control" placeholder="Create Password" required>
-          <label for="inputPassword2" class="sr-only">Confirm Password</label>
-          <input type="password" id="inputPassword2" class="form-control" placeholder="Confirm Password" required>
+          <input type="password" name="userPassword" id="inputPassword" class="form-control" placeholder="Create Password" required>
           
           <!-- First name --->
-          <label for="customerName" class="sr-only">Customer Name</label>
-          <input type="text" name="customerName" id="inputFirstName" class="form-control" placeholder="Name" required>
+          <label for="userName" class="sr-only">User Name</label>
+          <input type="text" name="userName" id="inputFirstName" class="form-control" placeholder="Name" required>
 
           <div class="checkbox mb-3">
             <label>
