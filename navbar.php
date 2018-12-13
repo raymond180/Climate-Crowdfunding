@@ -37,7 +37,7 @@
     }
     //if a customer log in, show the button log-out
     if (is_array($_SESSION)){
-        if (array_key_exists('customerEmail', $_SESSION)){
+        if (array_key_exists('email', $_SESSION)){
 ?> 
     <span class="navbar-text"><a class="btn btn-outline-primary d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="./log-out.php">log out</a></span>
 <?php 

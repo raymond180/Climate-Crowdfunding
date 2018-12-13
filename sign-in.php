@@ -2,24 +2,48 @@
 include_once("./connect_database.php");
 session_start();
 
-if(isset($_SESSION['customerEmail'])){
+if(isset($_SESSION['email'])){
   header('Location: ./index.php');
 }
+
 if (isset($_POST['submit'])){
-  $usernameFromForm = $_POST['customerEmail'];
-  $passwordFromForm = $_POST['customerPassword'];
-
-  $query = "SELECT customerEmail , customerPassword , customerID FROM Customers WHERE customerEmail = '{$usernameFromForm}'";
-  $record = getOneRow ($query);
-
-  if($record['customerEmail'] == $usernameFromForm AND $record['customerPassword']  == $passwordFromForm){
-    $_SESSION['customerEmail'] = $usernameFromForm;
-    // get customerID too
-    $_SESSION['customerID'] = $record['customerID'];
-    header('Location: customer-order.php ');
+  $usernameFromForm = $_POST['email'];
+  $passwordFromForm = $_POST['password'];
+  $name_of_table = "users";
+  if (tableExists($db, $name_of_table)) {
+    // Prepare a SQL query
+    $sqlQuery ="SELECT * FROM $name_of_table WHERE email = '{$usernameFromForm}'";
+    $statement1= $db->prepare($sqlQuery);
+  
+    // Execute the SQL query using $statement1->execute(); and assign the value
+    // that is returned  to $result.
+    $result = $statement1->execute();
+      if (!$result) {
+      // Query fails.
+      $body = "Retrieving records failed.";
+      } 
+      else {
+      // Query is successful.
+      // Convert sqlQuery result to an array and store it in $numberOfRows using $sqlQuery->fetchAll(PDO::FETCH_ASSOC);
+      $userInfo = $statement1->fetch(PDO::FETCH_ASSOC);
+      if($userInfo) {
+        if($userInfo['email'] == $usernameFromForm AND $userInfo['password']  == $passwordFromForm){
+          $_SESSION['email'] = $usernameFromForm;
+          // get customerID too
+          $_SESSION['userID'] = $userInfo['userID'];
+          header('Location: ./index.php ');
+        }
+        else {
+          $errorMessage = "Invalid Email or Password";
+        }
+      }
+    }
+    // Closing query connection
+    $statement1->closeCursor();	
   }
   else {
-    $errorMessage = "Invalid Email or Password";
+    // Table does not exist in db.
+    $body = "No such user exist";
   }
 }
 ?>
@@ -52,9 +76,9 @@ if (isset($_POST['submit'])){
               echo "<p>" .$errorMessage. "</p>";
           ?>
           <label for="inputEmail" class="sr-only">Email address</label>
-          <input type="email" name="customerEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+          <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
           <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" name="customerPassword" id="inputPassword" class="form-control" placeholder="Password" required>
+          <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
           <div class="checkbox mb-3">
             <label>
               <input type="checkbox" value="remember-me"> Remember me

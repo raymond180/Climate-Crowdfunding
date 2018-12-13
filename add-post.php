@@ -31,10 +31,9 @@
                         <h2>Add Post</h2>
                     </div><!-- /.col -->
                     <div class="col-md-12">
-                        <form method="GET" action="process-add-post.php">
+                        <form method="GET" action="./process-add-post.php">
                             <div class="form-group">
-                                <label for="CID">Community ID</label>
-                                <input type="text" class="form-control" id="CID" name="CID" value='<?php echo $CID; ?>' disabled>
+                                <input type="hidden" class="form-control" id="CID" name="CID" value='<?php echo $CID; ?>'>
                             </div>
                             <div class="form-group">
                                 <label for="title">Post Title</label>
@@ -44,7 +43,7 @@
                                 <label for="content">Content</label>
                                 <textarea class="form-control" id="content" rows="6" name="content"></textarea>
                             </div>
-                            <button class="btn btn-primary float-right" type='submit' name='submit'> Create Post </button>
+                            <button class="btn btn-primary float-right" type='submit' name='createPost'> Create Post </button>
                         </form>
                     </div><!-- /.col -->
                 </div><!-- /.row -->

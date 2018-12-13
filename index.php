@@ -21,19 +21,19 @@
             <div class="container about">
                 <div class="row">
                     <div class="col-lg-4">
-                        <img class="rounded-circle" src="./images/" alt="Solar Energy image" width="140" height="140">
+                        <img class="rounded-circle" src="./images/solar-panel.jpeg" alt="Solar Energy image" width="140" height="140">
                         <h2>Solar Energy</h2>
                         <p>Do you know sun provides 7,000 times energy the world is using today?</p>
                         <p><a class="btn btn-secondary" href="solar-energy.php" role="button">View details &raquo;</a></p>
                     </div><!-- /.col-lg-4 -->
                     <div class="col-lg-4">
-                        <img class="rounded-circle" src="./images/" alt="Wind Energy image" width="140" height="140">
+                        <img class="rounded-circle" src="./images/wind-power.jpeg" alt="Wind Energy image" width="140" height="140">
                         <h2>Wind Energy</h2>
                         <p>Do you know wind energy is the fastest growing energy resource today?</p>
                         <p><a class="btn btn-secondary" href="wind-energy.php" role="button">View details &raquo;</a></p>
                     </div><!-- /.col-lg-4 -->
                     <div class="col-lg-4">
-                        <img class="rounded-circle" src="./images/" alt="Money image" width="140" height="140">
+                        <img class="rounded-circle" src="./images/investment.jpeg" alt="Money image" width="140" height="140">
                         <h2>Invest in Future</h2>
                         <p>Why not fund the next generation energy resource?</p>
                         <p><a class="btn btn-secondary" href=".php" role="button">View details s&raquo;</a></p>

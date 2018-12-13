@@ -26,7 +26,7 @@ if (tableExists($db, $name_of_table)) {
                 $body .= "        <div class='card-body'>";
                 $body .= "            <h5 class='card-title'>{$resultRow['communityName']}</h5>";
                 $body .= "            <p class='card-text'>{$resultRow['communityDesciption']}</p>";
-                $body .= "            <form method='GET' action='view-community.php'>";
+                $body .= "            <form method='GET' action='./view-community.php'>";
                 $body .= "              <button type='submit' name='CID' value='{$resultRow['CID']}' class='btn btn-primary'>View Community</button>";
                 $body .= "            </form>";
                 $body .= "        </div> <!-- /.card-body -->";
